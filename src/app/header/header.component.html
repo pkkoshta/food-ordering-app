@@ -1,0 +1,19 @@
+<header>
+    <div class="container">
+        <a href="#" routerLink="/" class="logo">JBT Food Coorner!</a>
+        <nav>
+            <ul>
+                
+                    <li >
+                         <a routerLink="/login-page">Login </a> 
+                    </li>
+                
+                
+                <li *ngIf="cart.items.length >0">
+                     <a routerLink="/cart-page" class="cart">{{cart.items.length}} </a> 
+                </li>
+            
+            </ul>
+        </nav>
+    </div>
+</header>
