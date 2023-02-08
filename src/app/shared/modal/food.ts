@@ -3,10 +3,14 @@ export class Foods{
     price!:number;
     name!:string;
     favorite:boolean=false;
-    star:number=0;
+    star!:number;
     tags?:string[];
     imageUrl!:string;
     cookTime!:string;
     origins!:string[];
+    quantity!:number;
+    customerId!:number;
+
+    
 
 }

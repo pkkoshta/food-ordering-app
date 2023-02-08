@@ -1,4 +1,8 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, Observable, throwError } from 'rxjs';
+import { Product } from 'src/app/shared/modal/backend/product';
 import { Foods } from 'src/app/shared/modal/food';
 import { Tag } from 'src/app/shared/modal/tag';
 
@@ -6,144 +10,66 @@ import { Tag } from 'src/app/shared/modal/tag';
   providedIn: 'root'
 })
 export class FoodService {
+  eror:string='';
 
-  constructor() { }
+  productServiceUrl:string='http://localhost:9091/product';
+  
+  constructor(private httpClient:HttpClient, private route:Router) { }
 
-  getFoodById(id: number): Foods {
-    return this.getAll().find(food => food.id == id)!;
+  // calling backing serivce
+  foodById(id: number): Observable<Foods> {
+    return this.httpClient.get<Foods>(`${this.productServiceUrl}/${id}`);
+  }
+  
+// dummy data
+  // getFoodById(id: number): Foods {
+  //   return this.getAll().find(food => food.id == id)!;
+  // }
+
+  createFood(food:Product):Observable<Product>{
+    return this.httpClient.post<Product>('http://localhost:9091/product', food).pipe(
+      catchError((error) => {
+          let errorMsg: string;
+          if (error.error instanceof ErrorEvent) {
+              errorMsg = `Error: ${error.error.message}`;
+          } else {
+              errorMsg = this.getServerErrorMessage(error);
+              this.eror=errorMsg;
+          }
+  
+          return throwError(errorMsg);
+      })
+  );
   }
 
-  getAllTag(): Tag[] {
-    return [
-      { name: 'All', count: 20 },
-      { name: 'Breakfast', count: 10 },
-      { name: 'Dinner', count: 30 },
-      { name: 'Lunch', count: 5 },
-      { name: 'Food', count: 10 },
-      { name: 'Lunch', count: 10 },
-      { name: 'Food', count: 10 },
-      { name: 'Food', count: 10 },
-    ];
-  }
+  private getServerErrorMessage(error: HttpErrorResponse): string {
+    switch (error.status) {
 
-  getFoodByTag(tag: string): Foods[] {
+        case 200: {
+          this.route.navigateByUrl('/login');
+          return `Success`;
+        }
+        case 404: {
+            return `Not Found: ${error.message}`;
+        }
+        case 403: {
+            return `Invalid Username/Password `;
+        }
+        case 500: {
+            return `Internal Server Error: ${error.message}`;
+        }
+        default: {
+            return `Unknown Server Error: ${error.message}`;
+        }
 
-    return tag == 'All' ? this.getAll() : this.getAll().filter(food => food.tags?.includes(tag));
-
-    // if(tag=='All')
-    // return this.getAll();
-    // else
-    // return this.getAll().filter(food=> food.tags?.includes(tag));
-  }
-
-  getAll(): Foods[] {
-    return [
-      {
-        id: 1,
-        price: 30,
-        name: 'Tea',
-        favorite: false,
-        star: 5,
-        tags: ['Food', 'Breakfast'],
-        imageUrl: '/assets/food-6.jpg',
-        cookTime: '10-15 min',
-        origins: ['Indian', 'South Indian']
+    }
+}
 
 
-      },
-      {
-        id: 2,
-        price: 30,
-        name: 'Samosa',
-        favorite: false,
-        star: 3.4,
-        tags: ['Food', 'Breakfast'],
-        imageUrl: '/assets/food-5.jpg',
-        cookTime: '10-15 min',
-        origins: ['Indian', 'South Indian']
+  // backend
 
-
-      },
-      {
-        id: 3,
-        price: 10,
-        name: 'Aloo Bonda',
-        favorite: true,
-        star: 5,
-        tags: ['Food', 'Breakfast'],
-        imageUrl: '/assets/food-1.jpg',
-        cookTime: '10-80 min',
-        origins: ['Indian', 'South Indian']
-
-
-      },
-      {
-        id: 4,
-        price: 40,
-        name: 'Burger',
-        favorite: false,
-        star: 2,
-        tags: ['Food', 'Breakfast'],
-        imageUrl: '/assets/food-7.jpg',
-        cookTime: '10-15 min',
-        origins: ['Indian', 'South Indian']
-
-
-      },
-      {
-        id: 5,
-        price: 30,
-        name: 'Momos',
-        favorite: true,
-        star: 5,
-        tags: ['Food', 'Breakfast'],
-        imageUrl: '/assets/food-2.jpg',
-        cookTime: '10-15 min',
-        origins: ['Indian', 'South Indian']
-
-
-      },
-      {
-        id: 6,
-        price: 20,
-        name: 'Kachori',
-        favorite: true,
-        star: 5,
-        tags: ['Food', 'Breakfast'],
-        imageUrl: '/assets/food-4.jpg',
-        cookTime: '10-30 min',
-        origins: ['Indian', 'South Indian']
-
-
-      },
-      {
-        id: 7,
-        price: 30,
-        name: 'Fries',
-        favorite: false,
-        star: 5,
-        tags: ['Dinner', 'Breakfast'],
-        imageUrl: '/assets/food-3.jpg',
-        cookTime: '5-15 min',
-        origins: ['Indian', 'South Indian']
-
-
-      },
-      {
-        id: 8,
-        price: 40,
-        name: 'Momos',
-        favorite: true,
-        star: 3,
-        tags: ['Food', 'Lunch'],
-        imageUrl: '/assets/food-2.jpg',
-        cookTime: '10-30 min',
-        origins: ['Indian', 'South Indian']
-
-
-      },
-
-    ];
+  getFoods():Observable<Foods[]>{
+    return this.httpClient.get<Foods[]>(`${this.productServiceUrl}`)
   }
 
 }

@@ -1,28 +1,24 @@
-<app-not-found [visible]="!cart || cart.items.length <= 0"
+ <app-not-found [visible]="!cart || cart.foods.length <= 0"
 notFoundMassage="Item not abailable"
 resetLinkText="Go to Home!"
-></app-not-found>
+></app-not-found> 
 
-<div *ngIf="cart && cart.items.length >0"   class="container">
+<div *ngIf="cart && cart.foods.length >0"   class="container">
     <ul>
-        <li *ngFor="let cartItem of cart.items">
+        <li *ngFor="let cartItem of cart.foods">
             <div>
-                <img [src]="cartItem.food.imageUrl" [alt]="cartItem.food.name">
+                <img [src]="cartItem.imageUrl" [alt]="cartItem.name">
             </div>
 
             <div>
-                <a routerLink="/food/{{cartItem.food.id}}">
-                    {{cartItem.food.name}}
+                <a routerLink="/food/{{cartItem.foodId}}">
+                    {{cartItem.name}}
                 </a>
             </div>
 
             <div>
                 <select (change)="changeQuantiy(cartItem, quantitySelect.value)" #quantitySelect>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option>{{cartItem.quantity}}</option>
                 </select>
             </div>
 
@@ -39,14 +35,13 @@ resetLinkText="Go to Home!"
     <div class="checkout">
         <div>
             <div class="food-count">
-                {{cart.items.length}}
+                {{cart.foods.length}}
             </div>
 
             <div class="total-price">
-                {{cart.totalPrice | currency :'INR'}}
+                {{cart.totalPrice| currency :'INR'}}
             </div>
         </div>
-
-        <a routerLink="/checkout">Process to Checkout</a>
+        <a routerLink="/googlePay" (click)="orderComplete()">Process to Checkout</a>
     </div>
 </div>

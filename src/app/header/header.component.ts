@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import { LoginService } from '../services/oauth/login.service';
 import { Cart } from '../shared/modal/cart';
 
 @Component({
@@ -10,12 +11,18 @@ import { Cart } from '../shared/modal/cart';
 export class HeaderComponent {
   cart!:Cart;
   totalCart:number = 0;
-  constructor(private cs:CartService){
+  constructor(private cs:CartService, public loginService:LoginService){
     this.totalItem();
     
   }
    totalItem(){
-    this.cart = this.cs.getCart();
+    this.cs.getCart().subscribe(data=>{
+      this.cart = data;
+    })
+   
   }
+
+  
+
 
 }

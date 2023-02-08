@@ -16,9 +16,7 @@ resetLinkText="Go to Home!"
         {{origin}}
     </span>
 </div>
-<div class="tag">
-    <app-tag [foodPageTags]="food.tags" justifyContent="start"></app-tag>
-</div>
+
 
 <div class="cook-time">
     <span>
@@ -27,11 +25,30 @@ resetLinkText="Go to Home!"
 </div>
 
 <div class="price">
-    <span>{{food.price | currency:'INR'}}</span>
+    <span>{{totalPrice | currency:'INR'}}</span>
 </div>
 
+
+
+<div id="add">
+   <div>
+    Quantity:  <div class="wrapper">
+        <span class="minus" (click)="minus()">-</span>
+        <span class="num">{{quantity}}</span>
+        <span class="plus" (click)="add()">+</span>
+        </div>
+    <!-- Quantity: <select (change)="changeQuantiy(food , quantitySelect.value)" #quantitySelect>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select> -->
+</div>
+</div>
 <div>
     <button (click)="addToCart()">Add to cart</button>
 </div>
 
 </div>
+
