@@ -17,24 +17,35 @@ export class HomeComponent implements OnInit{
     private cs:CartService){
     
   }
-
-  
-
-  
+// backend call
   ngOnInit(): void {
     this.route.params.subscribe(prams=>{
       if(prams['searchItem'])
-      this.foods = this.fs.getAll()
-                       .filter(food=> food.name.toLocaleLowerCase()
-                       .includes(prams['searchItem'].toLocaleLowerCase()));
-      else if(prams['tag']) 
-      this.foods = this.fs.getFoodByTag(prams['tag']);                
+      this.fs.getFoods()
+      .subscribe(data=>{
+        this.foods = data.filter(food=> food.name.toLocaleLowerCase()
+      .includes(prams['searchItem'].toLocaleLowerCase()));  
+      })                
       else
-      this.foods = this.fs.getAll();                 
+      this.fs.getFoods()
+      .subscribe(data=>{
+        this.foods = data
+      })             
     })
-
-   
-    
   }
+
+  
+  // ngOnInit(): void {
+  //   this.route.params.subscribe(prams=>{
+  //     if(prams['searchItem'])
+  //     this.foods = this.fs.getAll()
+  //                      .filter(food=> food.name.toLocaleLowerCase()
+  //                      .includes(prams['searchItem'].toLocaleLowerCase()));
+  //     else if(prams['tag']) 
+  //     this.foods = this.fs.getFoodByTag(prams['tag']);                
+  //     else
+  //     this.foods = this.fs.getAll();                 
+  //   })
+  // }
 
 }

@@ -1,0 +1,69 @@
+<div class="form">
+<div class="container">
+    <form (ngSubmit)="createProduct()">
+        <td>
+            <div class="container">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Product Name</mat-label>
+                    <input type="text" matInput [(ngModel)]="product.name" [ngModelOptions]="{standalone: true}"
+                           placeholder="tea">
+                </mat-form-field>
+            </div>
+
+            <div class="container">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Price</mat-label>
+                    <input type="number" matInput [(ngModel)]="product.price" [ngModelOptions]="{standalone: true}"
+                           placeholder="price">
+                  </mat-form-field>
+            </div>
+
+            <div class="container">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Image Url</mat-label>
+                    <input type="text" matInput [(ngModel)]="product.imageUrl" [ngModelOptions]="{standalone: true}"
+                           placeholder="image url">
+                  </mat-form-field>
+            </div>
+
+            <div class="container">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Cooking time</mat-label>
+                    <input type="number" matInput [(ngModel)]="product.cookTime" [ngModelOptions]="{standalone: true}"
+                           placeholder="Ex. 10min">
+                    
+                    
+                    
+                  </mat-form-field>
+            </div>
+
+            <div class="container">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Tags</mat-label>
+                    <input type="text" matInput [(ngModel)]="product.tags" [ngModelOptions]="{standalone: true}"
+                           placeholder="Ex. food, dinner, lunch etc.">
+                </mat-form-field>
+            </div>
+            <div class="container">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Star</mat-label>
+                    <input type="number" matInput [(ngModel)]="product.star" [ngModelOptions]="{standalone: true}"
+                           >
+                </mat-form-field>
+            </div>
+
+            <div class="container">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Origin</mat-label>
+                    <input type="text" matInput [(ngModel)]="product.origins"  [ngModelOptions]="{standalone: true}"
+                           placeholder="Ex. indian, north india etc.">
+                </mat-form-field>
+            </div>
+
+            <div class="container">
+                <button type="submit" class="submit">Save</button>
+            </div>
+        </td>
+    </form>
+</div>
+</div>

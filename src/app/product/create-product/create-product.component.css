@@ -1,0 +1,41 @@
+.form{
+
+    margin-top: 3rem;
+
+}
+.container{
+    justify-content: center;
+    padding: 10px;
+    display: flex;
+    margin: 0 0 ;
+}
+
+input{
+    font-size: 1rem;
+    padding: .8rem;
+    border-radius: .3rem;
+    width: 20rem;
+}
+
+
+button{
+    color: white;
+    border: none;
+    background-color: #1eaa5d;
+    font-size: 1.2rem;
+    padding: .5rem;
+    border-radius: .5rem;
+    width: 20rem;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover{
+    opacity: .9;
+}
+
+
+  
+  .example-full-width {
+    width: 100%;
+  }

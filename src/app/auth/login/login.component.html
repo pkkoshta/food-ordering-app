@@ -1,0 +1,43 @@
+<div id="backgroud">
+    
+    
+    <div >
+        <form class="form"(ngSubmit)="auth()">
+        <td>
+            <div class="container">
+                <h4>Sign in with your email address</h4>
+            </div>
+            <div class="container">
+                <span style="color: red; font-size: 1rem;">{{loginService.eror}}</span>
+            </div>
+            <div class="container">
+                <input type="text" placeholder="Username" [(ngModel)]="login.username" name="username">
+            </div>
+
+            <div class="container">
+                <input type="password" placeholder="Password" [(ngModel)]="login.password" name="password">
+            </div>
+
+            <div class="container">
+                <button type="submit" class="submit">SignIn</button>
+            </div>
+
+            <div class="container">
+                <a href=""(click)="loginService.logout()" >forgot password</a>
+                
+                <a id="sign" routerLink="/signup">Sign Up</a>
+                
+            </div>
+            
+        </td>
+    </form>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <img src="" alt="insta" srcset=""><a class="link email svelte-5eapp5" href="https://help.food.com/hc/en-us" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>icons / email</title><defs><path d="M23.8611996,3.03733866 C23.771688,2.84149512 23.6536783,2.65400814 23.5114025,2.47487773 C23.3322721,2.3326019 23.1440352,2.21984187 22.9481916,2.13033023 C22.751491,2.04156854 22.527203,2 22.2777918,2 L1.70779208,2 C1.45752375,2 1.23403928,2.04156854 1.03819574,2.13033023 C0.841495118,2.21984187 0.654008141,2.3344232 0.475734811,2.47669903 C0.332601896,2.65582944 0.219466898,2.84240577 0.130705206,3.03824931 C0.0411935671,3.23494993 0,3.45752375 0,3.706935 L0,20.8486014 C0,21.0988697 0.0411935671,21.3223542 0.130705206,21.5181978 C0.219466898,21.7148984 0.334208927,21.9023854 0.477341842,22.0806587 C0.655615173,22.2237916 0.842298633,22.3437297 1.03899926,22.4324914 C1.23484279,22.5220566 1.45752375,22.5699997 1.70779208,22.5699997 L22.2777918,22.5699997 C22.527203,22.5699997 22.7506875,22.5220566 22.9473881,22.4324914 C23.1432317,22.3437297 23.3307186,22.2256129 23.5098491,22.08248 C23.6521249,21.9042067 23.771688,21.715809 23.8611996,21.5191084 C23.9499613,21.3232649 23.998333,21.0988697 23.998333,20.8486014 L23.998333,3.706935 C23.998333,3.45752375 23.9499613,3.23403928 23.8611996,3.03733866 L23.8611996,3.03733866 Z M15.6773931,12.1335639 L22.2841663,5.99920434 L22.2841663,18.5214059 L15.6773931,12.1335639 L15.6773931,12.1335639 Z M22.2841663,3.75643156 L12.0234327,13.2365766 L1.76548451,3.71416664 L22.2841663,3.71416664 L22.2841663,3.75643156 L22.2841663,3.75643156 Z M1.71416664,5.94943994 L8.37225771,12.1343675 L1.71416664,18.5734202 L1.71416664,5.94943994 L1.71416664,5.94943994 Z M11.4035471,14.9561536 C11.617818,15.063289 11.8320888,15.1168567 12.0463596,15.1168567 C12.2606305,15.1168567 12.456474,15.063289 12.6356044,14.9561536 L14.4459787,13.2780916 L22.2759705,20.8558331 L1.70779208,20.8558331 L9.5931729,13.2780916 L11.4035471,14.9561536 L11.4035471,14.9561536 Z" id="path-email"></path></defs><g id="icons-/-email" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><mask id="mask-email" fill="white"><use xlink:href="#path-email"></use></mask><use id="Mask" fill="currentColor" xlink:href="#path-email"></use><g id="Group" mask="url(#mask-email)" fill="currentColor"><g id="color-/-primary-/-black"><rect id="Rectangle" x="0" y="0" width="24" height="24"></rect></g></g></g></svg>
+        </a>
+    </div>
+</footer>

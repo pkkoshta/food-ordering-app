@@ -1,0 +1,77 @@
+#backgroud{
+    /* background-size: 150px;
+    width: 300px;
+    height: 300px; */
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+background-image: url('https://thumbs.dreamstime.com/b/indian-food-curry-meal-dishes-17901090.jpg');
+opacity: .9;
+
+}
+.header{
+    padding: 5px;
+    margin: 0 0;
+}
+.form{
+    display: flex;
+    justify-content: center;
+    
+    padding-top: 114px;
+    opacity: 100rem;
+    /* color: #e72929; */
+    
+    
+}
+
+td{
+    padding: 1rem;
+    background-color: white;
+    border-radius: 5px;
+    margin: 1px;
+    
+
+}
+
+.container{
+    justify-content: center;
+    padding: 10px;
+}
+
+input{
+    font-size: 1.2rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    width: 18rem;
+}
+
+a {
+    text-decoration: none;
+    padding: 1rem;
+}
+
+button{
+    color: white;
+    border: none;
+    background-color: #ecd14c;
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    width: 18rem;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover{
+    opacity: .9;
+}
+
+#id{
+    margin-left: 15px;
+}
+
+.footer{
+    background-color: black;
+}

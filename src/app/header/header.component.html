@@ -3,14 +3,20 @@
         <a href="#" routerLink="/" class="logo">JBT Food Coorner!</a>
         <nav>
             <ul>
-                
-                    <li >
-                         <a routerLink="/login-page">Login </a> 
+                <li *ngIf="loginService.isLoggedIn()">
+                    <a routerLink="/create/product">Product </a> 
+               </li>
+               
+                    <li *ngIf="!loginService.isLoggedIn()">
+                         <a routerLink="/login" >Login </a> 
                     </li>
+                    <li *ngIf="loginService.isLoggedIn()">
+                        <a (click)="loginService.logout()" >logout </a> 
+                   </li>
                 
                 
-                <li *ngIf="cart.items.length >0">
-                     <a routerLink="/cart-page" class="cart">{{cart.items.length}} </a> 
+                <li *ngIf="cart.foods.length > 0 && loginService.isLoggedIn()">
+                     <a routerLink="/cart-page" class="cart">{{cart.foods.length}} </a> 
                 </li>
             
             </ul>
