@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { FoodService } from '../services/food/food.service';
 import { CartRequestDTO } from '../shared/modal/backend/CartRequestDto';
+import { OrderDTO } from '../shared/modal/backend/orderDTO';
+import { ShoppingCart } from '../shared/modal/backend/shoppingCart';
 import { CartItem } from '../shared/modal/cartItem';
 import { Foods } from '../shared/modal/food';
 
@@ -12,9 +14,12 @@ import { Foods } from '../shared/modal/food';
   styleUrls: ['./food-page.component.css']
 })
 export class FoodPageComponent implements OnInit{
+  totalPrice:number=0
 
+  quantity:number=1;
   food!:Foods;
   cartRequestDTO!:CartRequestDTO;
+  orderDTO:OrderDTO  = new OrderDTO();
   constructor(private activatedRoute:ActivatedRoute, private fs:FoodService, private cs:CartService, private router:Router){
     this.activatedRoute.params.subscribe((params)=>{
       if(params['id'])
@@ -26,12 +31,11 @@ export class FoodPageComponent implements OnInit{
        
     })
   }
-
+  cartItems!:ShoppingCart;
 
   addToCart(){
     this.food.quantity = this.quantity;
-  
-    this.cs.saveProduct(this.food).subscribe(data=> console.log('add to cart', data));
+    this.cs.addToShoppingCart(this.food);
   }
 
   ngOnInit(): void {
@@ -39,9 +43,7 @@ export class FoodPageComponent implements OnInit{
   }
 
   
-  totalPrice:number=0
-
-  quantity:number=1;
+  
   add(){
      
      this.quantity +=1;

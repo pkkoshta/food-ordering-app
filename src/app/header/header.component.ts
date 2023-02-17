@@ -16,9 +16,7 @@ export class HeaderComponent {
     
   }
    totalItem(){
-    this.cs.getCart().subscribe(data=>{
-      this.cart = data;
-    })
+    this.cart = this.cs.getCart()
    
   }
 
