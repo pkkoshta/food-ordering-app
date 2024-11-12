@@ -24,8 +24,9 @@ export class CartPageComponent {
   }
 
   orderComplete(){
-    this.cs.completeOrder().subscribe(data=>{
+    this.cs.proccedToCheckout().subscribe(data=>{
     if(data){
+      console.log(data)
       this.router.navigateByUrl('/')
     }
       })
@@ -34,9 +35,7 @@ export class CartPageComponent {
   // here calling dummay
   setCart(){
     
-    this.cs.getCart().subscribe(data=>{
-      this.cart = data;
-      })
+    this.cart = this.cs.getCart();
   
     }
     
